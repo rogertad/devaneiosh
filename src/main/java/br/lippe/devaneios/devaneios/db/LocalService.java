@@ -33,7 +33,7 @@ public class LocalService {
         }
 
         try{
-            repository.saveall(list);
+            repository.saveAll(list);
             
             
          }catch(Exception e){
