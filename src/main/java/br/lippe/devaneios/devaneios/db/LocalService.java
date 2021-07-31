@@ -20,12 +20,12 @@ public class LocalService {
         logger.info("--------------------AQUI---------------");
 
 
-        for (int x=1;x<2;x++){
+        for (int x=1;x<22;x++){
             Local l = new Local("santos"+x, "cidade");
             try{
-               // repository.save(l);
+               repository.save(l);
             }catch(Exception e){
-                logger.error("deu pau: ==="+e.getMessage());
+               logger.error("deu pau: ==="+e.getMessage());
             }
         }
 
