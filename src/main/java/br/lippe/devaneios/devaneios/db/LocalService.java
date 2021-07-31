@@ -1,5 +1,9 @@
 package br.lippe.devaneios.devaneios.db;
 
+import java.util.ArrayList;
+
+
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +24,15 @@ public class LocalService {
         logger.info("--------------------AQUI---------------");
 
 
+        List<Local> list = new ArrayList<>();
+        
+
         for (int x=1;x<22;x++){
             Local l = new Local("santos"+x, "cidade");
             try{
-               repository.save(l);
+               //repository.save(l);
+               list.add(l);
+               
             }catch(Exception e){
                logger.error("deu pau: ==="+e.getMessage());
             }
