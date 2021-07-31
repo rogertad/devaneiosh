@@ -48,7 +48,12 @@ public class Local {
  
     @Override
     public String toString() {
-        return "eu sou ===>>" + id + " "+nome+" "+cidade;
+        return new String().concat("eu sou --->>>> ")
+            .concat(id.toString())
+            .concat(" ||| ")
+            .concat(nome)
+            .concat(" ||| ")
+            .concat(cidade);
     }
 
 
