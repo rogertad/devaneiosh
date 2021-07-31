@@ -46,15 +46,16 @@ public class LocalService {
             
           }
 
-          logger.info("------------c--------AQUI---------------");
+          logger.info("------------procurando pelo nro 5---------------");
 
 
         for (Local l : repository.findByNomeContaining("5")) {
             logger.info("====>>>>>>> "+l.toString());
         }
 
+        logger.info("------------PRONTO ---------------");
 
-          return repository.findAll();
+          return list;
 
         
           
