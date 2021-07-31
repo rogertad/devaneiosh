@@ -46,7 +46,7 @@ public class LocalService {
             
           }
 
-          logger.info("--------------------AQUI---------------");
+          logger.info("------------c--------AQUI---------------");
 
 
         for (Local l : repository.findByNomeContaining("5")) {
