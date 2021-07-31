@@ -29,14 +29,17 @@ public class LocalService {
 
         for (int x=1;x<22;x++){
             Local l = new Local("santos"+x, "cidade");
-            try{
-               //repository.save(l);
-               list.add(l);
-               
-            }catch(Exception e){
-               logger.error("deu pau: ==="+e.getMessage());
-            }
+            list.add(l);
         }
+
+        try{
+            repository.saveall(list);
+            
+            
+         }catch(Exception e){
+            logger.error("deu pau: ==="+e.getMessage());
+         }
+
 
         for (Local l : repository.findAll()) {
             logger.info("====>>>>>>> "+l.toString());
