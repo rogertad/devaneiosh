@@ -27,10 +27,10 @@ public class CausoController {
 	@Autowired
 	private CausoService storageService;
 
-    @GetMapping("/form_upload")
+    @GetMapping("/causo")
     public String form_upload(Model model) {
 
-        return "index";
+        return "causoview";
         
     }
 

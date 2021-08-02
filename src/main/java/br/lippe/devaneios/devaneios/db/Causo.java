@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "causos")
+@Table(name = "causox")
 public class Causo {
 
 	@Id
@@ -87,7 +87,18 @@ public class Causo {
 	public Causo() {
 	}
 
-	public String getDescricao() {
+	public Causo(String name, Long coordenadaX, Long coordenadaY, String type, String descricao, User user,
+            byte[] data) {
+        this.name = name;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
+        this.type = type;
+        this.descricao = descricao;
+        this.user = user;
+        this.data = data;
+    }
+
+    public String getDescricao() {
         return descricao;
     }
 
