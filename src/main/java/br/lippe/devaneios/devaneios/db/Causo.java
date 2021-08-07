@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "causox")
+@Table(name = "causo1")
 public class Causo {
 
 	@Id
@@ -70,14 +70,14 @@ public class Causo {
 
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User_old user;
 
 
-	public User getUser() {
+	public User_old getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(User_old user) {
         this.user = user;
     }
 
@@ -87,7 +87,7 @@ public class Causo {
 	public Causo() {
 	}
 
-	public Causo(String name, Long coordenadaX, Long coordenadaY, String type, String descricao, User user,
+	public Causo(String name, Long coordenadaX, Long coordenadaY, String type, String descricao, User_old user,
             byte[] data) {
         this.name = name;
         this.coordenadaX = coordenadaX;

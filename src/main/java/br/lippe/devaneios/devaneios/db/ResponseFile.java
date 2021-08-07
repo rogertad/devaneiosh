@@ -7,8 +7,32 @@ public class ResponseFile {
 	private String url;
 	private String type;
 	private long size;
+	private long id;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public ResponseFile(String name, String url, String type, long size) {
+		this.name = name;
+		this.url = url;
+		this.type = type;
+		this.size = size;
+	}
+
+	public ResponseFile(String usernome, String name, String url, String type, long size) {
+		this.name = name;
+		this.url = url;
+		this.type = type;
+		this.size = size;
+	}
+
+	public ResponseFile(long id,String name, String url, String type, long size) {
+		this.id=id;
 		this.name = name;
 		this.url = url;
 		this.type = type;

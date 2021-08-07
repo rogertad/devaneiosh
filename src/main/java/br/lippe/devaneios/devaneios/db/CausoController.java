@@ -35,10 +35,10 @@ public class CausoController {
     }
 
 	@PostMapping("/upload")
-	public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("nome_user") String nome_user,@RequestParam("file") MultipartFile file) {
 		String message = "";
 		try {
-			storageService.store(file);
+			storageService.store(nome_user, file);
 
 			message = "Uploaded the file successfully: " + file.getOriginalFilename();
 			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
@@ -53,8 +53,15 @@ public class CausoController {
 		List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> {
 			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/files/")
 					.path(dbFile.getId()).toUriString();
+					
 
-			return new ResponseFile(dbFile.getName(), fileDownloadUri, dbFile.getType(), dbFile.getData().length);
+
+			
+
+					return new ResponseFile(dbFile.getUser().getNome(), dbFile.getName(), fileDownloadUri, dbFile.getType(), dbFile.getData().length);
+
+			//return new ResponseFile(dbFile.getUser().getNome(),  dbFile.getName(), fileDownloadUri, dbFile.getType(), dbFile.getData().length);
+
 		}).collect(Collectors.toList());
 
 		return ResponseEntity.status(HttpStatus.OK).body(files);

@@ -1,5 +1,4 @@
-package br.lippe.devaneios.devaneios.db;
-
+package br.lippe.devaneios.devaneios.grepoback;
 
 import java.util.List;
 
@@ -12,45 +11,41 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
-
 @Entity
-@Table(name = "usuariox")
-class User {
+@Table(name="user_grepo")
+public class User {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
 
-    private String nome;
 
     @OneToMany (
         fetch = FetchType.LAZY, 
         mappedBy = "user",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
-    private List<Causo> causo;
+    private List<City> cities;
 
-    public List<Causo> getCauso() {
-        return causo;
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setCauso(List<Causo> causo) {
-        this.causo = causo;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
     }
 
     public User() {
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Long getId() {
@@ -60,6 +55,4 @@ class User {
     public void setId(Long id) {
         this.id = id;
     }
-
-    
 }
