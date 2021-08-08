@@ -13,28 +13,28 @@ import br.lippe.devaneios.devaneios.grepoback.*;
 
 @SpringBootApplication
 @EnableScheduling
-public class DevaneiosApplication {
+public class schedule {
 
-	public static void main(String[] args) {
+	public static void amain(String[] args) {
 		
 		
 		//SpringApplication.run(DevaneiosApplication.class, args);
 		
-		ConfigurableApplicationContext ctx = SpringApplication.run(DevaneiosApplication.class, args);
+		SpringApplication.run(schedule.class, args);
 		
 		//ctx.getBean(arg0)
-		
 
+        }
+		
+        @Scheduled(fixedRate =  15000)
+        public void fazIsso(){
+
+            System.out.println("to aqui a cada 15 seg :-)");
+        }
 			
 
 
-	}
 
-	@Scheduled(fixedRate =  5000)
-	public void fazIsso(){
-
-		System.out.println("to aqui a cada 5 seg :-)");
 	}
 
 
-}

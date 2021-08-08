@@ -45,7 +45,7 @@ public class Building {
         this.level = level;
     }
 
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     private City city;
 
@@ -53,7 +53,7 @@ public class Building {
 
     @Override
     public String toString() {
-        return " :-)   Building [city=" + city.getName() + ", id=" + id + ", level=" + level + "]";
+        return " \n :-)   Building [city=" + city.getName() + ", id=" + id + ", level=" + level + "]";
     }
     
 

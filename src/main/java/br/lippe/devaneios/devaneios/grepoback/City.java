@@ -30,7 +30,7 @@ public class City {
     private User user;
 
     @OneToMany (
-        fetch = FetchType.EAGER, 
+        fetch = FetchType.LAZY, 
         mappedBy = "city",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
@@ -122,13 +122,14 @@ public class City {
 
         StringBuilder sss = new StringBuilder();
         
-
+//        getBuildings();
+        
         for (Building b : buildings) {
             sss.append(b.toString());
             
         }
 
-        return "City [buildings=" + sss + ", id=" + id + ", name=" + name + ", silver=" + silver + ", stone="
+        return "City [buildings=" + sss + ", \n id=" + id + ", name=" + name + ", silver=" + silver + ", stone="
                 + stone + ", user=" + user + ", wood=" + wood + "]";
     }
 
