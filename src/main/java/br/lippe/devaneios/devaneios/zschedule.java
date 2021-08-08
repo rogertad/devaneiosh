@@ -2,6 +2,8 @@ package br.lippe.devaneios.devaneios;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,23 +15,25 @@ import br.lippe.devaneios.devaneios.grepoback.*;
 
 @SpringBootApplication
 @EnableScheduling
-public class schedule {
+public class zschedule {
 
+    private static final Logger logger = LoggerFactory.getLogger(zschedule.class);
+    
 	public static void amain(String[] args) {
 		
 		
 		//SpringApplication.run(DevaneiosApplication.class, args);
 		
-		SpringApplication.run(schedule.class, args);
+		SpringApplication.run(zschedule.class, args);
 		
 		//ctx.getBean(arg0)
 
         }
 		
-        @Scheduled(fixedRate =  15000)
+       // @Scheduled(fixedRate =  15000)
         public void fazIsso(){
 
-            System.out.println("to aqui a cada 15 seg :-)");
+            logger.info("to aqui a cada 15 seg :-)");
         }
 			
 

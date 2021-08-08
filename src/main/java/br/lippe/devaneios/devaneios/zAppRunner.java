@@ -12,9 +12,9 @@ import br.lippe.devaneios.devaneios.grepoback.*;
 import java.util.concurrent.CompletableFuture;
 
 @Component
-public class AppRunner {//implements CommandLineRunner {
+public class zAppRunner {//implements CommandLineRunner {
 
-  private static final Logger logger = LoggerFactory.getLogger(AppRunner.class);
+  private static final Logger logger = LoggerFactory.getLogger(zAppRunner.class);
 
   private final UpdateResources ur;
 
@@ -22,7 +22,7 @@ public class AppRunner {//implements CommandLineRunner {
 	private CityRepository cityRepo;
 
 
-  public AppRunner(UpdateResources ur) {
+  public zAppRunner(UpdateResources ur) {
     this.ur = ur;
   }
 

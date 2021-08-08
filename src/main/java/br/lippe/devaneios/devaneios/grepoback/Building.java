@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="building")
+@Table(name = "building")
 public class Building {
 
     @Id
@@ -45,7 +45,7 @@ public class Building {
         this.level = level;
     }
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     private City city;
 
@@ -55,17 +55,10 @@ public class Building {
     public String toString() {
         return " \n :-)   Building [city=" + city.getName() + ", id=" + id + ", level=" + level + "]";
     }
-    
 
-/*     @OneToMany (
-        fetch = FetchType.LAZY, 
-        mappedBy = "city",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    private List<Building> buildings;
- */
+    /*
+     * @OneToMany ( fetch = FetchType.LAZY, mappedBy = "city", cascade =
+     * CascadeType.ALL, orphanRemoval = true) private List<Building> buildings;
+     */
 
-
-
- 
 }

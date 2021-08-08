@@ -36,7 +36,25 @@ public class City {
         orphanRemoval = true)
     private List<Building> buildings = new ArrayList<>();
 
+    @OneToMany (
+        fetch = FetchType.LAZY, 
+        mappedBy = "city",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    private List<Event> events = new ArrayList<>();
+
+
     //Logger logger = LoggerFactory.getLogger(City.class);
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
 
     public List<Building> getBuildings() {
         return buildings;

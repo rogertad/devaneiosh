@@ -10,11 +10,11 @@ import java.util.concurrent.Executor;
 
 @SpringBootApplication
 @EnableAsync
-public class AsyncMethodApplication {
+public class zAsyncMethodApplication {
 
   public static void mainaaaaaaaaaaaaaa(String[] args) {
     // close the application context to shut down the custom ExecutorService
-    SpringApplication.run(AsyncMethodApplication.class, args).close();
+    SpringApplication.run(zAsyncMethodApplication.class, args).close();
   }
 
   @Bean
