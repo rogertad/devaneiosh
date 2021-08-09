@@ -29,10 +29,11 @@ public class DevaneiosApplication {
 
 	}
 
-	@Scheduled(fixedRate = 5000)
+	//@Scheduled(fixedRate = 5000)
 	public void fazIsso() {
 
 		logger.info("to aqui a cada 5 seg :-)");
+		
 	}
 
 }

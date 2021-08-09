@@ -19,8 +19,8 @@ import br.lippe.devaneios.devaneios.db.CausoRepository;
 import br.lippe.devaneios.devaneios.grepoback.*;
 
 @Component
-@Order(2)
-@EnableScheduling
+//@Order(2)
+//@EnableScheduling
 public class MyRunner implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
@@ -35,7 +35,7 @@ public class MyRunner implements CommandLineRunner {
 	}
 
 	@Transactional
-	@Scheduled(fixedRate = 5000)
+	//@Scheduled(fixedRate = 5000)
 	public void addEvent() throws Exception {
 
 		logger.info("...........adicionando evento.....................");
@@ -79,7 +79,7 @@ public class MyRunner implements CommandLineRunner {
 	}
 
 	@Transactional
-	@Scheduled(fixedRate = 140000)
+	//@Scheduled(fixedRate = 140000)
 	public void fazAquilo() throws Exception {
 
 		logger.info("........................incluindo cidades");
