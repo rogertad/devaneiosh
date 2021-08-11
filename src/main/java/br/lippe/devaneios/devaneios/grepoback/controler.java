@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
@@ -25,6 +28,17 @@ public class controler {
         model.addAttribute("datahora", Instant.now().toEpochMilli()+11000);
         logger.info("mandei a data "+Instant.now());
         return "timer";
+
+    }
+
+    @GetMapping("/ajax")
+    @ResponseBody
+    public String ajax() {
+
+        //model.addAttribute("datahora", Instant.now().toEpochMilli()+11000);
+        logger.info("------------------------mandei a data "+Instant.now());
+        
+        return "ajax_";
 
     }
 

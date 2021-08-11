@@ -30,13 +30,17 @@ public class MyRunner implements CommandLineRunner {
 	@Autowired
 	private CityRepository cityRepo;
 
+	@Transactional
 	public void run(String... args) throws Exception {
-
+		fazAquilo();
 	}
 
 	@Transactional
-	@Scheduled(fixedRate = 5000)
+	@Scheduled(fixedRate = 15000)
 	public void addEvent() throws Exception {
+
+
+		
 
 		logger.info("...........adicionando evento.....................");
 
@@ -78,8 +82,8 @@ public class MyRunner implements CommandLineRunner {
 
 	}
 
-	@Transactional
-	@Scheduled(fixedRate = 10000)
+//	@Transactional
+//	@Scheduled(fixedRate = 10000)
 	public void fazAquilo() throws Exception {
 
 		logger.info("........................incluindo cidades");
