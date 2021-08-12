@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Cellpadding</h2>
+  <p>Cell padding specifies the space between the cell content and its borders.</p>
+  <p hidden id="horaini">1628781282542</p>
+
+  <table style="width:100%">
+    <tr>
+      <th>Building</th>
+      <th>Evento</th>
+      <th>Hora</th>
+    </tr>
+
+
+    <tr>
+      <td>Farm <button type="button" onclick="loadDoc()">APERTE AQUI</button></th>
+      <td id="ajax1">Building</th>
+      <td id="hora">
+        </th>
+
+    </tr>
+
+
+    <tr th:each="event: ${events}">
+      <td th:text="${event.city.name}" />
+      <td th:text="${event.tick}" />
+      <td th:text="${event.status}" />
+    </tr>
+
+
+
+  </table>
+
+  <p><strong>Tip:</strong> Try to change the padding to 5px.</p>
+
+</body>
+
+</html>
+
+
+<script>
+  //var countDownDate = new Date([[${ datahora }]]).getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function () {
+
+    var countDownDate = document.getElementById("horaini").innerHTML;
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("hora").innerHTML = days + "days " + hours + "hours "
+      + minutes + "min " + seconds + "sec ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("hora").innerHTML = "EXPIRED";
+    }
+  }, 1000);
+
+  function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+      document.getElementById("ajax1").innerHTML =
+        this.responseText;
+
+    }
+    xhttp.open("GET", "ajax");
+    xhttp.send();
+    document.getElementById("horaini").innerHTML=Number(document.getElementById("horaini").innerHTML)+111112;
+  }
+
+
+</script>
