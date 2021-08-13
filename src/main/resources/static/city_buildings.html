@@ -21,7 +21,7 @@
 
   <h2>Cellpadding</h2>
   <p>Cell padding specifies the space between the cell content and its borders.</p>
-  <p hidden id="horaini">1628781282542</p>
+  <p hidden id="horaini">99999999999999999</p>
 
   <table style="width:100%">
     <tr>
@@ -32,10 +32,9 @@
 
 
     <tr>
-      <td>Farm <button type="button" onclick="loadDoc()">APERTE AQUI</button></th>
-      <td id="ajax1">Building</th>
-      <td id="hora">
-        </th>
+      <td>Farm <button type="button" onclick="loadDoc()">APERTE AQUI</button></td>
+      <td id="ajax1">Building</td>
+      <td id="hora"> </td>
 
     </tr>
 
@@ -91,13 +90,12 @@
   function loadDoc() {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
-      document.getElementById("ajax1").innerHTML =
-        this.responseText;
+      document.getElementById("horaini").innerHTML = this.responseText;
 
     }
-    xhttp.open("GET", "ajax");
+    xhttp.open("GET", "up?cid=1&bid=2");
     xhttp.send();
-    document.getElementById("horaini").innerHTML=Number(document.getElementById("horaini").innerHTML)+111112;
+    //document.getElementById("horaini").innerHTML = Number(document.getElementById("horaini").innerHTML) + 111112;
   }
 
 

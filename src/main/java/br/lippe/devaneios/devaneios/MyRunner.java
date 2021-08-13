@@ -36,7 +36,7 @@ public class MyRunner implements CommandLineRunner {
 	}
 
 	@Transactional
-	@Scheduled(fixedRate = 15000)
+	//@Scheduled(fixedRate = 15000)
 	public void addEvent() throws Exception {
 
 
