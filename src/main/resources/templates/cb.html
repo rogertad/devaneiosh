@@ -44,26 +44,17 @@
   <table style="width:50%">
     <tr>
       <th>Building</th>
-      <th>Evento</th>
-      <th>Hora</th>
+      <th>Action</th>
+      <th>Event</th>
+      <th>Hour</th>
     </tr>
 
-
-    <tr>
-      <td>Farm <button id="bt" type="button" onclick="loadDoc()">APERTE AQUI</button></td>
-      <td id="ajax1">Building</td>
+    <tr th:each="buildings: ${buildings}">
+      <td th:id="aa" th:text="${buildings.kob.name}"></td>
+      <td><button id="bt" type="button" onclick="loadDoc()">APERTE AQUI</button></td>
+      <td th:id="aa" th:text="${buildings.level}"></td>
       <td id="hora"> </td>
-
     </tr>
-
-
-    <tr th:each="event: ${events}">
-      <td th:text="${event.city.name}" />
-      <td th:text="${event.tick}" />
-      <td th:text="${event.status}" />
-    </tr>
-
-
 
   </table>
 
@@ -119,7 +110,7 @@
     var velWood = document.getElementById("velWood").innerHTML;
     var nextFarm = document.getElementById("nextFarm").innerHTML;
 
-    
+
 
     /*[# th:each="resource : ${resource}"]*/
 
@@ -130,7 +121,7 @@
 
     // Display the result in the element with id="demo"
 
-    
+
     // If the count down is finished, write some text
     if (Number(document.getElementById("wood").innerHTML) < 20) {
       //clearInterval(x);
@@ -147,7 +138,7 @@
       document.getElementById("horaini").innerHTML = this.responseText;
 
     }
-    xhttp.open("GET", "up?cid=1&bid=2");
+    xhttp.open("GET", "up?cid=3&bid=2");
     xhttp.send();
 
   }

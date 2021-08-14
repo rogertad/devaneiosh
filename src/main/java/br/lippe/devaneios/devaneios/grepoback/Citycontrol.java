@@ -30,6 +30,9 @@ public class Citycontrol {
     @Autowired
     private CityRepository cityRepo;
 
+    @Autowired
+    private KindOfBuildingRepo kobRepo;
+
     @GetMapping("/city")
     public Iterable<City> cidades(@RequestParam(value = "name", defaultValue = "World") String name) {
 
@@ -44,30 +47,24 @@ public class Citycontrol {
 
     }
 
-
-
     public Iterable<City> fazAquilo() {
+
+        addKindOfBuilding();
 
         logger.info("........................incluindo cidades");
 
         City c = new City();
         c.setName("cidade 001");
 
-        Building b = new Building();
-        b.setLevel(10L);
-        b.setCity(c);
+        for (KindOfBuilding l : kobRepo.findAll()) {
 
-        Building b1 = new Building();
-        b1.setLevel(1440L);
-        b1.setCity(c);
-
-        Building b2 = new Building();
-        b2.setLevel(22210L);
-        b2.setCity(c);
-
-        c.getBuildings().add(b);
-        c.getBuildings().add(b1);
-        c.getBuildings().add(b2);
+            Building b = new Building();            
+            b.setLevel(1L);
+            b.setCity(c);
+            b.setKob(l);
+            c.getBuildings().add(b);
+    
+        }
 
         Event e1 = new Event();
         e1.setCity(c);
@@ -88,19 +85,19 @@ public class Citycontrol {
         c.getEvents().add(e2);
 
         Resource r1 = new Resource("wood", 0);
-		Resource r2 = new Resource("stone", 0);
-		Resource r3 = new Resource("silver", 0);
-		Resource r4 = new Resource("iron", 0);
-        
+        Resource r2 = new Resource("stone", 0);
+        Resource r3 = new Resource("silver", 0);
+        Resource r4 = new Resource("iron", 0);
+
         r1.setCity(c);
         r2.setCity(c);
         r3.setCity(c);
         r4.setCity(c);
 
-		c.getResource().add(r1);
-		c.getResource().add(r2);
-		c.getResource().add(r3);
-		c.getResource().add(r4);
+        c.getResource().add(r1);
+        c.getResource().add(r2);
+        c.getResource().add(r3);
+        c.getResource().add(r4);
 
         // User u = new User();
         // u.setCities(alc);
@@ -126,6 +123,18 @@ public class Citycontrol {
         }
 
         return cityRepo.findAll();
+    }
+
+    public void addKindOfBuilding() {
+
+        KindOfBuilding k1 = new KindOfBuilding();
+        k1.setName("Farm");
+        KindOfBuilding k2 = new KindOfBuilding();
+        k2.setName("Quarry");
+
+        kobRepo.save(k1);
+        kobRepo.save(k2);
+
     }
 
 }

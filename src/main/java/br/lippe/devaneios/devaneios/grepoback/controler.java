@@ -44,8 +44,8 @@ public class controler {
 
         //service get array resources e qty
 
-        model.addAttribute("resource", s.getResourcesQty(1L));
-     
+        model.addAttribute("resource", s.getResourcesQty(3L));
+        model.addAttribute("buildings", s.getBuildings(3L));
         
         //logger.info("mandei a data " + Instant.now());
         return "cb";

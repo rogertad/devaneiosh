@@ -69,5 +69,14 @@ public class service {
 
 	}
 
+	public List<Building> getBuildings(long x){
+
+		//List l = new ArrayList<Resource>();
+				
+		City ci = c.findById(x);
+
+		return ci.getBuildings();
+
+	}
 	  
 }

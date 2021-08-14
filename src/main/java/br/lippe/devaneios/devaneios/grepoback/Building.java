@@ -52,6 +52,19 @@ public class Building {
     @JsonBackReference
     private City city;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kindofbuilding_id")
+    @JsonBackReference
+    private KindOfBuilding kob;
+
+    public KindOfBuilding getKob() {
+        return kob;
+    }
+
+    public void setKob(KindOfBuilding kob) {
+        this.kob = kob;
+    }
+
     private Long level;
 
     @Override

@@ -32,7 +32,7 @@ public class MyRunner implements CommandLineRunner {
 
 	@Transactional
 	public void run(String... args) throws Exception {
-		fazAquilo();
+//		fazAquilo();
 	}
 
 	@Transactional
