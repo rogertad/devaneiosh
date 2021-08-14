@@ -137,4 +137,27 @@ public class Citycontrol {
 
     }
 
+
+    public void addBuildingsLevels() {
+
+        KindOfBuilding k1 = new KindOfBuilding();
+        k1.setName("Farm");
+
+        BuildingLevelsResources blr = new BuildingLevelsResources();
+        blr.setLevel(1L);
+        blr.setQty(20L);
+        blr.setKob(k1);
+        blr.setResource(new Resource());
+
+        k1.getBuildingLevelsResources().add(blr);
+
+        KindOfBuilding k2 = new KindOfBuilding();
+        k2.setName("Quarry");
+
+        kobRepo.save(k1);
+        kobRepo.save(k2);
+
+    }
+
+
 }
