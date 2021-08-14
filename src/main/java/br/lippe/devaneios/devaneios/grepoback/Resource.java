@@ -28,10 +28,23 @@ public class Resource {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resource", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<BuildingLevelsResources> blr = new ArrayList<>();
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     @JsonBackReference
     private City city;
+
+    public List<BuildingLevelsResources> getBlr() {
+        return blr;
+    }
+
+
+    public void setBlr(List<BuildingLevelsResources> blr) {
+        this.blr = blr;
+    }
 
     String name;
     Long qty;

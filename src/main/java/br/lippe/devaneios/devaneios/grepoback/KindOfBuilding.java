@@ -37,8 +37,20 @@ public class KindOfBuilding {
     @JsonManagedReference
     private List<Building> buildings = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "kob", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<BuildingLevelsResources> buildingLevelsResources = new ArrayList<>();
+
     public List<Building> getBuildings() {
         return buildings;
+    }
+
+    public List<BuildingLevelsResources> getBuildingLevelsResources() {
+        return buildingLevelsResources;
+    }
+
+    public void setBuildingLevelsResources(List<BuildingLevelsResources> buildingLevelsResources) {
+        this.buildingLevelsResources = buildingLevelsResources;
     }
 
     public void setBuildings(List<Building> buildings) {
@@ -55,4 +67,7 @@ public class KindOfBuilding {
         this.name = name;
     }
 
+
+
+    
 }
