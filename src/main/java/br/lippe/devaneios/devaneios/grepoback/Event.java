@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "event")
 public class Event {
@@ -22,6 +24,7 @@ public class Event {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
+    @JsonBackReference
     private City city;
 
     public static final int BUILDING = 0;

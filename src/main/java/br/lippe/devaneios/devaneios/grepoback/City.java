@@ -14,52 +14,46 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Entity
-@Table(name="city")
+@Table(name = "city")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
-    @OneToMany (
-        fetch = FetchType.LAZY, 
-        mappedBy = "city",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Building> buildings = new ArrayList<>();
 
-    @OneToMany (
-        fetch = FetchType.LAZY, 
-        mappedBy = "city",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Event> events = new ArrayList<>();
 
-
-    //Logger logger = LoggerFactory.getLogger(City.class);
+    // Logger logger = LoggerFactory.getLogger(City.class);
 
     public List<Event> getEvents() {
         return events;
     }
 
-
     public void setEvents(List<Event> events) {
         this.events = events;
     }
 
-
     public List<Building> getBuildings() {
         return buildings;
     }
-
 
     public void setBuildings(List<Building> buildings) {
         this.buildings = buildings;
@@ -70,31 +64,25 @@ public class City {
     private Long wood;
     private Long silver;
 
-
     public Long getStone() {
         return stone;
     }
-
 
     public void setStone(Long stone) {
         this.stone = stone;
     }
 
-
     public Long getWood() {
         return wood;
     }
-
 
     public void setWood(Long wood) {
         this.wood = wood;
     }
 
-
     public Long getSilver() {
         return silver;
     }
-
 
     public void setSilver(Long silver) {
         this.silver = silver;
@@ -104,53 +92,44 @@ public class City {
         return id;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
 
-
     public User getUser() {
         return user;
     }
-
 
     public void setUser(User user) {
         this.user = user;
     }
 
     public City() {
-    
-        
-    }
 
+    }
 
     @Override
     public String toString() {
 
         StringBuilder sss = new StringBuilder();
-        
-//        getBuildings();
-        
+
+        // getBuildings();
+
         for (Building b : buildings) {
             sss.append(b.toString());
-            
+
         }
 
-        return "City [buildings=" + sss + ", \n id=" + id + ", name=" + name + ", silver=" + silver + ", stone="
-                + stone + ", user=" + user + ", wood=" + wood + "]";
+        return "City [buildings=" + sss + ", \n id=" + id + ", name=" + name + ", silver=" + silver + ", stone=" + stone
+                + ", user=" + user + ", wood=" + wood + "]";
     }
 
-    
 }
-

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "building")
 public class Building {
@@ -47,6 +49,7 @@ public class Building {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
+    @JsonBackReference
     private City city;
 
     private Long level;

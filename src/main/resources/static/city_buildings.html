@@ -19,11 +19,35 @@
 
 <body>
 
-  <h2>Cellpadding</h2>
-  <p>Cell padding specifies the space between the cell content and its borders.</p>
-  <p hidden id="horaini">99999999999999999</p>
+  <h2>CIDADE XXXXX</h2>
+  <p>.................essa cidade serve para teste..............</p>
+  <p id="silve">.................essa cidade serve para teste..............</p>
+  <p hidden id="horaini">0</p>
+  <p hidden id="velWood">7</p>
+  <p hidden id="nextFarm">12</p>
 
-  <table style="width:100%">
+  <table style="width:25%">
+    <tr>
+      <th>resource</th>
+      <th>qty</th>
+    </tr>
+    <tr>
+      <td>wood</td>
+      <td id="wood">0</td>
+    </tr>
+    <tr>
+      <td>stone</td>
+      <td id="stone">0</td>
+    </tr>
+    <tr>
+      <td>silver</td>
+      <td id="silver">0</td>
+    </tr>
+  </table>
+
+  <p>..............</p>
+
+  <table style="width:50%">
     <tr>
       <th>Building</th>
       <th>Evento</th>
@@ -32,7 +56,7 @@
 
 
     <tr>
-      <td>Farm <button type="button" onclick="loadDoc()">APERTE AQUI</button></td>
+      <td>Farm <button id="bt" type="button" onclick="loadDoc()">APERTE AQUI</button></td>
       <td id="ajax1">Building</td>
       <td id="hora"> </td>
 
@@ -57,10 +81,16 @@
 
 
 <script>
+
+  window.onload = cincoSeg();
+
+  ////////////////////////////////////////////////
   //var countDownDate = new Date([[${ datahora }]]).getTime();
 
   // Update the count down every 1 second
-  var x = setInterval(function () {
+  var x = setInterval(umSeg, 1000);
+
+  function umSeg() {
 
     var countDownDate = document.getElementById("horaini").innerHTML;
 
@@ -82,10 +112,32 @@
 
     // If the count down is finished, write some text
     if (distance < 0) {
-      clearInterval(x);
+      //clearInterval(x);
       document.getElementById("hora").innerHTML = "EXPIRED";
     }
-  }, 1000);
+  }
+
+  ///////////////////////////////////////  
+  var x5 = setInterval(cincoSeg, 5000);
+
+  function cincoSeg() {
+
+    var velWood = document.getElementById("velWood").innerHTML;
+    var nextFarm = document.getElementById("nextFarm").innerHTML;
+
+    // Display the result in the element with id="demo"
+    document.getElementById("wood").innerHTML =
+      Number(document.getElementById("wood").innerHTML) + Number(velWood);
+
+    // If the count down is finished, write some text
+    if (Number(document.getElementById("wood").innerHTML) < 20) {
+      //clearInterval(x);
+      document.getElementById("bt").disabled = true;
+    } else {
+      document.getElementById("bt").disabled = false;
+    }
+  }
+
 
   function loadDoc() {
     const xhttp = new XMLHttpRequest();
@@ -95,7 +147,7 @@
     }
     xhttp.open("GET", "up?cid=1&bid=2");
     xhttp.send();
-    //document.getElementById("horaini").innerHTML = Number(document.getElementById("horaini").innerHTML) + 111112;
+
   }
 
 
