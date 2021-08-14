@@ -32,9 +32,6 @@ public class UpdateResources {
 
       City c = new City();
       c.setName("cidade 001");
-      c.setSilver(100L);
-      c.setStone(100L);
-      c.setWood(100L);
 
       Building b = new Building();
       b.setLevel(10L);

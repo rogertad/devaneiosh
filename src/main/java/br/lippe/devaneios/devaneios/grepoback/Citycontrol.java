@@ -37,6 +37,14 @@ public class Citycontrol {
 
     }
 
+    @GetMapping("/mostracity")
+    public Iterable<City> mostraCities(@RequestParam(value = "name", defaultValue = "World") String name) {
+
+        return cityRepo.findAll();
+
+    }
+
+
 
     public Iterable<City> fazAquilo() {
 
@@ -44,9 +52,6 @@ public class Citycontrol {
 
         City c = new City();
         c.setName("cidade 001");
-        c.setSilver(100L);
-        c.setStone(100L);
-        c.setWood(100L);
 
         Building b = new Building();
         b.setLevel(10L);
@@ -71,7 +76,6 @@ public class Citycontrol {
         e1.setTick(new Timestamp(timeStampMillis));
 
         c.getEvents().add(e1);
-
         // Thread.sleep(3000);
 
         Event e2 = new Event();
@@ -82,6 +86,21 @@ public class Citycontrol {
         e2.setTick(new Timestamp(timeStampMillis2));
 
         c.getEvents().add(e2);
+
+        Resource r1 = new Resource("wood", 7);
+		Resource r2 = new Resource("stone", 7);
+		Resource r3 = new Resource("silver", 7);
+		Resource r4 = new Resource("iron", 7);
+        
+        r1.setCity(c);
+        r2.setCity(c);
+        r3.setCity(c);
+        r4.setCity(c);
+
+		c.getResource().add(r1);
+		c.getResource().add(r2);
+		c.getResource().add(r3);
+		c.getResource().add(r4);
 
         // User u = new User();
         // u.setCities(alc);

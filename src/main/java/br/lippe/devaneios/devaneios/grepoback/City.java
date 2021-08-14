@@ -41,6 +41,10 @@ public class City {
     @JsonManagedReference
     private List<Event> events = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Resource> resources = new ArrayList<>();
+
     // Logger logger = LoggerFactory.getLogger(City.class);
 
     public List<Event> getEvents() {
@@ -60,33 +64,6 @@ public class City {
     }
 
     private String name;
-    private Long stone;
-    private Long wood;
-    private Long silver;
-
-    public Long getStone() {
-        return stone;
-    }
-
-    public void setStone(Long stone) {
-        this.stone = stone;
-    }
-
-    public Long getWood() {
-        return wood;
-    }
-
-    public void setWood(Long wood) {
-        this.wood = wood;
-    }
-
-    public Long getSilver() {
-        return silver;
-    }
-
-    public void setSilver(Long silver) {
-        this.silver = silver;
-    }
 
     public Long getId() {
         return id;
@@ -118,7 +95,6 @@ public class City {
 
     @Override
     public String toString() {
-
         StringBuilder sss = new StringBuilder();
 
         // getBuildings();
@@ -128,8 +104,16 @@ public class City {
 
         }
 
-        return "City [buildings=" + sss + ", \n id=" + id + ", name=" + name + ", silver=" + silver + ", stone=" + stone
-                + ", user=" + user + ", wood=" + wood + "]";
+        return "City [buildings=" + sss + ", events=" + events + ", id=" + id + ", name=" + name + ", resource="
+                + resources + ", user=" + user + "]";
+    }
+
+    public List<Resource> getResource() {
+        return resources;
+    }
+
+    public void setResource(List<Resource> resource) {
+        this.resources = resource;
     }
 
 }

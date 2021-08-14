@@ -36,11 +36,8 @@ public class MyRunner implements CommandLineRunner {
 	}
 
 	@Transactional
-	//@Scheduled(fixedRate = 15000)
+	// @Scheduled(fixedRate = 15000)
 	public void addEvent() throws Exception {
-
-
-		
 
 		logger.info("...........adicionando evento.....................");
 
@@ -82,17 +79,14 @@ public class MyRunner implements CommandLineRunner {
 
 	}
 
-//	@Transactional
-//	@Scheduled(fixedRate = 10000)
+	// @Transactional
+	// @Scheduled(fixedRate = 10000)
 	public void fazAquilo() throws Exception {
 
 		logger.info("........................incluindo cidades");
 
 		City c = new City();
 		c.setName("cidade 001");
-		c.setSilver(100L);
-		c.setStone(100L);
-		c.setWood(100L);
 
 		Building b = new Building();
 		b.setLevel(10L);
@@ -118,7 +112,7 @@ public class MyRunner implements CommandLineRunner {
 
 		c.getEvents().add(e1);
 
-		//Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		Event e2 = new Event();
 		e2.setCity(c);
@@ -129,13 +123,23 @@ public class MyRunner implements CommandLineRunner {
 
 		c.getEvents().add(e2);
 
+		Resource r1 = new Resource("wood", 7);
+		Resource r2 = new Resource("stone", 7);
+		Resource r3 = new Resource("silver", 7);
+		Resource r4 = new Resource("iron", 7);
+
+		c.getResource().add(r1);
+		c.getResource().add(r2);
+		c.getResource().add(r3);
+		c.getResource().add(r4);
+
 		// User u = new User();
 		// u.setCities(alc);
 		// Thread.sleep(1000);
 		logger.info("...........................S A L V A N D O..................");
 
 		// Thread.sleep(1000);
-		cityRepo.save(c);
+		//cityRepo.save(c);
 		// Thread.sleep(1000);
 
 		logger.info("...........................S A L V O..................");
@@ -143,9 +147,9 @@ public class MyRunner implements CommandLineRunner {
 		// Thread.sleep(1000);
 		for (City l : cityRepo.findAll()) {
 
-			for (Event eee : l.getEvents()) {
+			for (Resource eee : l.getResource()) {
 
-				// logger.info("TIMESTAMP é : " + eee.getTick());
+				logger.info("TIMESTAMP é : " + eee.getName());
 
 			}
 
