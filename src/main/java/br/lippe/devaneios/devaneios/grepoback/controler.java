@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.util.HtmlUtils;
 
 @Controller
 // @CrossOrigin("http://localhost:8081")
@@ -22,7 +26,6 @@ public class controler {
 
     @Autowired
     private EventRepo eventRepo;
-
 
     @Autowired
     private service s;
@@ -49,8 +52,7 @@ public class controler {
 
     @GetMapping("/up")
     @ResponseBody
-    public String upgradeBuilding(@RequestParam(name = "bid") String bid,
-            @RequestParam(name = "cid") String cid) {
+    public String upgradeBuilding(@RequestParam(name = "bid") String bid, @RequestParam(name = "cid") String cid) {
 
         // model.addAttribute("datahora", Instant.now().toEpochMilli()+11000);
         logger.info("------------------------mandei a data " + Instant.now());
@@ -58,13 +60,20 @@ public class controler {
         long x = Long.valueOf(cid);
         long y = Long.valueOf(bid);
 
-        Long l = s.addEvent(x,y);
+        Long l = s.addEvent(x, y);
 
         return l.toString();
 
     }
 
- 
+    @MessageMapping("/msg")
+    @SendTo("/topic/msg")
+    public City msg() throws Exception {
+        Thread.sleep(10000); // simulated delay
+        City c = new City();
+        c.setName("msg cidade");
+        return c;
+    }
 
     @GetMapping("/cities")
     public String cities(Model model) {

@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -23,24 +22,23 @@ import org.springframework.stereotype.Component;
 import br.lippe.devaneios.devaneios.db.CausoRepository;
 import br.lippe.devaneios.devaneios.grepoback.*;
 
-
 @RestController
 public class Citycontrol {
 
-	private static final Logger logger = LoggerFactory.getLogger(Citycontrol.class);
+    private static final Logger logger = LoggerFactory.getLogger(Citycontrol.class);
 
     @Autowired
-	private CityRepository cityRepo;
-
+    private CityRepository cityRepo;
 
     @GetMapping("/city")
-    public Iterable<City> greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+    public Iterable<City> cidades(@RequestParam(value = "name", defaultValue = "World") String name) {
 
         return fazAquilo();
 
     }
 
-    public Iterable<City> fazAquilo()  {
+
+    public Iterable<City> fazAquilo() {
 
         logger.info("........................incluindo cidades");
 
@@ -90,25 +88,23 @@ public class Citycontrol {
         // Thread.sleep(1000);
         logger.info("...........................S A L V A N D O..................");
 
-        
         // Thread.sleep(1000);
         cityRepo.save(c);
         // Thread.sleep(1000);
 
         logger.info("...........................S A L V O..................");
 
-
         for (City l : cityRepo.findAll()) {
 
-			for (Event eee : l.getEvents()) {
+            for (Event eee : l.getEvents()) {
 
-				// logger.info("TIMESTAMP é : " + eee.getTick());
+                // logger.info("TIMESTAMP é : " + eee.getTick());
 
-			}
+            }
 
-			// logger.info("====>>>>>>> " + l.toString());
-			// Thread.sleep(1000);
-		}
+            // logger.info("====>>>>>>> " + l.toString());
+            // Thread.sleep(1000);
+        }
 
         return cityRepo.findAll();
     }
