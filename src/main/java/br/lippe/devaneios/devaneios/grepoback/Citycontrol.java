@@ -87,10 +87,10 @@ public class Citycontrol {
 
         c.getEvents().add(e2);
 
-        Resource r1 = new Resource("wood", 7);
-		Resource r2 = new Resource("stone", 7);
-		Resource r3 = new Resource("silver", 7);
-		Resource r4 = new Resource("iron", 7);
+        Resource r1 = new Resource("wood", 0);
+		Resource r2 = new Resource("stone", 0);
+		Resource r3 = new Resource("silver", 0);
+		Resource r4 = new Resource("iron", 0);
         
         r1.setCity(c);
         r2.setCity(c);

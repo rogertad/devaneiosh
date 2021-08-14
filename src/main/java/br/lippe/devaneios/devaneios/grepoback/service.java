@@ -2,6 +2,8 @@ package br.lippe.devaneios.devaneios.grepoback;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,5 +59,15 @@ public class service {
 
     }
 
+	public List<Resource> getResourcesQty(long x){
 
+		//List l = new ArrayList<Resource>();
+				
+		City ci = c.findById(x);
+
+		return ci.getResource();
+
+	}
+
+	  
 }

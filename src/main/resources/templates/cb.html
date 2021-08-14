@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>CIDADE XXXXX</h2>
+  <p>.................essa cidade serve para teste..............</p>
+  <p id="silve">.................essa cidade serve para teste..............</p>
+  <p hidden id="horaini">0</p>
+  <p hidden id="velWood">7</p>
+  <p hidden id="nextFarm">12</p>
+
+  <table style="width:25%">
+    <tr>
+      <th>resource</th>
+      <th>qty</th>
+    </tr>
+
+    <tr th:each="resource: ${resource}">
+      <td th:id="aa" th:text="${resource.name}"></td>
+      <td th:id="${resource.name}" th:text="${resource.qty}"></td>
+    </tr>
+
+  </table>
+
+  <p>..............</p>
+
+  <table style="width:50%">
+    <tr>
+      <th>Building</th>
+      <th>Evento</th>
+      <th>Hora</th>
+    </tr>
+
+
+    <tr>
+      <td>Farm <button id="bt" type="button" onclick="loadDoc()">APERTE AQUI</button></td>
+      <td id="ajax1">Building</td>
+      <td id="hora"> </td>
+
+    </tr>
+
+
+    <tr th:each="event: ${events}">
+      <td th:text="${event.city.name}" />
+      <td th:text="${event.tick}" />
+      <td th:text="${event.status}" />
+    </tr>
+
+
+
+  </table>
+
+  <p><strong>Tip:</strong> Try to change the padding to 5px.</p>
+
+</body>
+
+</html>
+
+
+<script th:inline="javascript">
+
+  window.onload = cincoSeg();
+
+  ////////////////////////////////////////////////
+  //var countDownDate = new Date([[${ datahora }]]).getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(umSeg, 1000);
+
+  function umSeg() {
+
+    var countDownDate = document.getElementById("horaini").innerHTML;
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("hora").innerHTML = days + "days " + hours + "hours "
+      + minutes + "min " + seconds + "sec ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      //clearInterval(x);
+      document.getElementById("hora").innerHTML = "EXPIRED";
+    }
+  }
+
+  ///////////////////////////////////////  
+  var x5 = setInterval(cincoSeg, 5000);
+
+  function cincoSeg() {
+
+    var velWood = document.getElementById("velWood").innerHTML;
+    var nextFarm = document.getElementById("nextFarm").innerHTML;
+
+    
+
+    /*[# th:each="resource : ${resource}"]*/
+
+    document.getElementById([[${ resource.name }]]).innerHTML =
+      Number(document.getElementById([[${ resource.name }]]).innerHTML) + Number(velWood);
+
+    /*[/]*/
+
+    // Display the result in the element with id="demo"
+
+    
+    // If the count down is finished, write some text
+    if (Number(document.getElementById("wood").innerHTML) < 20) {
+      //clearInterval(x);
+      document.getElementById("bt").disabled = true;
+    } else {
+      document.getElementById("bt").disabled = false;
+    }
+  }
+
+
+  function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+      document.getElementById("horaini").innerHTML = this.responseText;
+
+    }
+    xhttp.open("GET", "up?cid=1&bid=2");
+    xhttp.send();
+
+  }
+
+
+</script>

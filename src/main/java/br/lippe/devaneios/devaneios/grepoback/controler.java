@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
+import br.lippe.devaneios.devaneios.grepoback.service;
 
 @Controller
 // @CrossOrigin("http://localhost:8081")
@@ -38,6 +38,20 @@ public class controler {
         return "timer";
 
     }
+
+    @GetMapping("/cb")
+    public String cb(Model model,@RequestParam(required = false)  String ss) {
+
+        //service get array resources e qty
+
+        model.addAttribute("resource", s.getResourcesQty(1L));
+     
+        
+        //logger.info("mandei a data " + Instant.now());
+        return "cb";
+
+    }
+
 
     @GetMapping("/ajax")
     @ResponseBody
@@ -61,6 +75,7 @@ public class controler {
         long y = Long.valueOf(bid);
 
         Long l = s.addEvent(x, y);
+        
 
         return l.toString();
 
