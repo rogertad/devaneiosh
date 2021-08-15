@@ -43,9 +43,17 @@ public class City {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Resource> resources = new ArrayList<>();
+    private List<ResourceCity> resourceCities = new ArrayList<>();
 
     // Logger logger = LoggerFactory.getLogger(City.class);
+
+    public List<ResourceCity> getResourceCities() {
+        return resourceCities;
+    }
+
+    public void setResourceCities(List<ResourceCity> resourceCities) {
+        this.resourceCities = resourceCities;
+    }
 
     public List<Event> getEvents() {
         return events;
@@ -105,15 +113,8 @@ public class City {
         }
 
         return "City [buildings=" + sss + ", events=" + events + ", id=" + id + ", name=" + name + ", resource="
-                + resources + ", user=" + user + "]";
+                + resourceCities + ", user=" + user + "]";
     }
 
-    public List<Resource> getResource() {
-        return resources;
-    }
-
-    public void setResource(List<Resource> resource) {
-        this.resources = resource;
-    }
 
 }

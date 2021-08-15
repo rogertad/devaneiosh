@@ -59,13 +59,13 @@ public class service {
 
     }
 
-	public List<Resource> getResourcesQty(long x){
+	public List<ResourceCity> getResourcesQty(long x){
 
 		//List l = new ArrayList<Resource>();
 				
 		City ci = c.findById(x);
 
-		return ci.getResource();
+		return ci.getResourceCities();
 
 	}
 

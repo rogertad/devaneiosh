@@ -123,15 +123,6 @@ public class MyRunner implements CommandLineRunner {
 
 		c.getEvents().add(e2);
 
-		Resource r1 = new Resource("wood", 7);
-		Resource r2 = new Resource("stone", 7);
-		Resource r3 = new Resource("silver", 7);
-		Resource r4 = new Resource("iron", 7);
-
-		c.getResource().add(r1);
-		c.getResource().add(r2);
-		c.getResource().add(r3);
-		c.getResource().add(r4);
 
 		// User u = new User();
 		// u.setCities(alc);
@@ -144,18 +135,6 @@ public class MyRunner implements CommandLineRunner {
 
 		logger.info("...........................S A L V O..................");
 
-		// Thread.sleep(1000);
-		for (City l : cityRepo.findAll()) {
-
-			for (Resource eee : l.getResource()) {
-
-				logger.info("TIMESTAMP é : " + eee.getName());
-
-			}
-
-			// logger.info("====>>>>>>> " + l.toString());
-			// Thread.sleep(1000);
-		}
 
 	}
 

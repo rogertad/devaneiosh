@@ -33,6 +33,9 @@ public class Citycontrol {
     @Autowired
     private KindOfBuildingRepo kobRepo;
 
+    @Autowired
+    private ResourceRepo resourceRepo;
+
     @GetMapping("/city")
     public Iterable<City> cidades(@RequestParam(value = "name", defaultValue = "World") String name) {
 
@@ -49,7 +52,9 @@ public class Citycontrol {
 
     public Iterable<City> fazAquilo() {
 
+        addResources();
         addKindOfBuilding();
+        addBuildingsLevels();
 
         logger.info("........................incluindo cidades");
 
@@ -58,13 +63,28 @@ public class Citycontrol {
 
         for (KindOfBuilding l : kobRepo.findAll()) {
 
-            Building b = new Building();            
+            Building b = new Building();
             b.setLevel(1L);
             b.setCity(c);
             b.setKob(l);
             c.getBuildings().add(b);
-    
+
+            cityRepo.save(c);
+
         }
+
+        for (Resource rr : resourceRepo.findAll()) {
+
+            ResourceCity rc = new ResourceCity();
+            rc.setCity(c);
+            rc.setResource(rr);
+            rc.setQty(1L);
+            c.getResourceCities().add(rc);
+
+            cityRepo.save(c);
+
+        }
+
 
         Event e1 = new Event();
         e1.setCity(c);
@@ -83,21 +103,6 @@ public class Citycontrol {
         e2.setTick(new Timestamp(timeStampMillis2));
 
         c.getEvents().add(e2);
-
-        Resource r1 = new Resource("wood", 0);
-        Resource r2 = new Resource("stone", 0);
-        Resource r3 = new Resource("silver", 0);
-        Resource r4 = new Resource("iron", 0);
-
-        r1.setCity(c);
-        r2.setCity(c);
-        r3.setCity(c);
-        r4.setCity(c);
-
-        c.getResource().add(r1);
-        c.getResource().add(r2);
-        c.getResource().add(r3);
-        c.getResource().add(r4);
 
         // User u = new User();
         // u.setCities(alc);
@@ -131,33 +136,54 @@ public class Citycontrol {
         k1.setName("Farm");
         KindOfBuilding k2 = new KindOfBuilding();
         k2.setName("Quarry");
+        KindOfBuilding k3 = new KindOfBuilding();
+        k3.setName("SilverMine");
 
         kobRepo.save(k1);
         kobRepo.save(k2);
+        kobRepo.save(k3);
 
     }
 
+    public void addResources() {
+
+        Resource r1 = new Resource();
+        Resource r2 = new Resource();
+        Resource r3 = new Resource();
+        Resource r4 = new Resource();
+        r1.setName("Wood");
+        r2.setName("Stone");
+        r3.setName("Silver");
+        r4.setName("Iron");
+        resourceRepo.save(r1);
+        resourceRepo.save(r2);
+        resourceRepo.save(r3);
+        resourceRepo.save(r4);
+
+    }
 
     public void addBuildingsLevels() {
 
-        KindOfBuilding k1 = new KindOfBuilding();
-        k1.setName("Farm");
+        for (KindOfBuilding k : kobRepo.findAll()) {
 
-        BuildingLevelsResources blr = new BuildingLevelsResources();
-        blr.setLevel(1L);
-        blr.setQty(20L);
-        blr.setKob(k1);
-        blr.setResource(new Resource());
+            // logger.info("-----> add level resource of building: ".concat(k.getName()));
 
-        k1.getBuildingLevelsResources().add(blr);
+            for (Resource rr : resourceRepo.findAll()) {
 
-        KindOfBuilding k2 = new KindOfBuilding();
-        k2.setName("Quarry");
+                BuildingLevelsResources blr = new BuildingLevelsResources();
+                blr.setLevel(1L);
+                blr.setQty(20L);
+                blr.setKob(k);
+                blr.setResource(rr);
 
-        kobRepo.save(k1);
-        kobRepo.save(k2);
+                k.getBuildingLevelsResources().add(blr);
+
+            }
+
+            kobRepo.save(k);
+
+        }
 
     }
-
 
 }

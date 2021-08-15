@@ -28,14 +28,22 @@ public class Resource {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public List<ResourceCity> getRc() {
+        return rc;
+    }
+
+
+    public void setRc(List<ResourceCity> rc) {
+        this.rc = rc;
+    }
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "resource", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<BuildingLevelsResources> blr = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id")
-    @JsonBackReference
-    private City city;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resource", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ResourceCity> rc = new ArrayList<>();
 
     public List<BuildingLevelsResources> getBlr() {
         return blr;
@@ -47,16 +55,11 @@ public class Resource {
     }
 
     String name;
-    Long qty;
 
     public Resource() {
 	}
 
 
-    public Resource(String string, long i) {
-        this.name=string;
-        this.qty=i;
-	}
 
 	public Long getId() {
         return id;
@@ -66,13 +69,6 @@ public class Resource {
         this.id = id;
     }
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
 
     public String getName() {
         return name;
@@ -80,14 +76,6 @@ public class Resource {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getQty() {
-        return qty;
-    }
-
-    public void setQty(Long qty) {
-        this.qty = qty;
     }
 
 }
