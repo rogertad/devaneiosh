@@ -82,4 +82,15 @@ public class BuildingLevelsResources {
 
     private Long qty;
 
+    private Long timeBuilding;
+
+    public Long getTimeBuilding() {
+        return timeBuilding;
+    }
+
+    public void setTimeBuilding(Long timeBuilding) {
+        this.timeBuilding = timeBuilding;
+    }
+    
+
 }

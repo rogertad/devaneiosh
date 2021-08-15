@@ -44,27 +44,19 @@ public class controler {
 
         //service get array resources e qty
 
-        Long l = 20L;
+        //Long l = 20L;
+
+        Long l = s.getCityID();
 
         model.addAttribute("resource", s.getResourcesQty(l));
         model.addAttribute("buildings", s.getBuildings(l));
+        model.addAttribute("idCity", l);
         
         //logger.info("mandei a data " + Instant.now());
         return "cb";
 
     }
 
-
-    @GetMapping("/ajax")
-    @ResponseBody
-    public String ajax() {
-
-        // model.addAttribute("datahora", Instant.now().toEpochMilli()+11000);
-        logger.info("------------------------mandei a data " + Instant.now());
-
-        return "ajax_";
-
-    }
 
     @GetMapping("/up")
     @ResponseBody
