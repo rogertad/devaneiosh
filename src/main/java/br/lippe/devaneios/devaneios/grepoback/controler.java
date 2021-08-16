@@ -69,11 +69,31 @@ public class controler {
         long y = Long.valueOf(bid);
 
         Long l = s.addEvent(x, y);
-        
 
         return l.toString();
 
     }
+
+
+    @GetMapping("/upBuilding")
+    @ResponseBody
+    public String upBuilding(@RequestParam(name = "bid") String bid, @RequestParam(name = "cid") String cid) {
+
+        // model.addAttribute("datahora", Instant.now().toEpochMilli()+11000);
+        logger.info("UPANDO BULDING");
+
+        long x = Long.valueOf(cid);
+        long y = Long.valueOf(bid);
+
+        s.upBuilding(cid,bid);
+
+        //Long l = s.addEvent(x, y);
+
+        return "a".toString();
+
+    }
+
+
 
     @MessageMapping("/msg")
     @SendTo("/topic/msg")

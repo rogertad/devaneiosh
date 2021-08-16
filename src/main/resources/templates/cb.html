@@ -141,7 +141,35 @@
     xhttp.open("GET", "up?cid=[[${idCity}]]&bid=2");
     xhttp.send();
 
+
+
+
+    fetch("http://localhost:8080/mostracity")
+      .then(function (response) {
+        response.json().then(function (data) {
+
+          console.log(data[0].id);
+          console.log(data[0].name);
+          console.log(data[0].events[0].tick);
+
+          return data[0].events.map(function (event) {
+
+            console.log(event.tick);
+
+
+          })
+
+          //console.log(data);
+        });
+      }).catch(function (err) {
+        console.error('Failed retrieving information', err);
+      });
+
+
+
   }
+
+
 
 
 </script>

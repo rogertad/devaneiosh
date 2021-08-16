@@ -238,4 +238,13 @@ public class service {
 
 	}
 
+	public void upBuilding(String cid, String bid) {
+
+		
+
+
+
+
+	}
+
 }
